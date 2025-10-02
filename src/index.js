@@ -1,13 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import './styles/index.css';
+import App from './pages/App';
+import Login from './pages/Login';
 import reportWebVitals from './reportWebVitals';
+
+// Verificar si el usuario está autenticado
+const isAuthenticated = () => {
+  return localStorage.getItem('token') !== null;
+};
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    {isAuthenticated() ? <App /> : <Login />}
   </React.StrictMode>
 );
 

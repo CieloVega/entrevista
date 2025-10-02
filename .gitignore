@@ -18,6 +18,11 @@
 .env.test.local
 .env.production.local
 
+# database certificates
+backend/ca.pem
+# recordar poner en el repo
+backend/.env 
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
