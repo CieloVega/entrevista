@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const authRoutes = require('./routes/auth');
+const tasksRoutes = require('./routes/tasks');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -11,6 +12,7 @@ app.use(express.json());
 
 // Routes
 app.use('/auth', authRoutes);
+app.use('/tasks', tasksRoutes);
 
 // Test endpoint
 app.get('/test', (req, res) => {
@@ -18,5 +20,5 @@ app.get('/test', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });

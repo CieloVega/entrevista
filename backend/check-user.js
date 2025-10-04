@@ -9,11 +9,7 @@ async function checkUser() {
     });
     
     if (user) {
-      console.log('✅ Usuario encontrado:');
-      console.log('ID:', user.id);
-      console.log('Username:', user.username);
-      console.log('Password (primeros 10 chars):', user.password.substring(0, 10) + '...');
-      console.log('Password length:', user.password.length);
+      console.log('✅ Usuario encontrado');
       
       // Verificar si parece ser un hash de bcrypt
       if (user.password.startsWith('$2b$') || user.password.startsWith('$2a$')) {
