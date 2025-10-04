@@ -50,11 +50,18 @@ JWT_SECRET="your-secret-key"
 - Run migrations and generate Prisma client:
 
 ```bash
+npm install dotenv
 npx prisma migrate dev --name init
 npx prisma generate
 ```
 
 ---
+
+- Add to server.js this line:
+
+```server
+require('dotenv').config();
+```
 
 ### 4. Start the backend server
 
@@ -77,36 +84,7 @@ The backend runs on `http://localhost:3001`
 npm install
 ```
 
-### 6. Set up TailwindCSS
-
-If not already set up, run:
-
-```bash
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
-```
-
-- Add the following to the top of your `src/index.css` (or `src/App.css`):
-
-```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-```
-
-- Configure `tailwind.config.js`:
-
-```js
-module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  theme: { extend: {} },
-  plugins: [],
-}
-```
-
----
-
-### 7. Start the frontend
+### 6. Start the frontend
 
 ```bash
 npm start
