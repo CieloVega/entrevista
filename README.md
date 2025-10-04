@@ -1,70 +1,143 @@
-# Getting Started with Create React App
+# Kanban App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A fullstack Kanban board built with React (Create React App), Express, Prisma, and TailwindCSS.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- User authentication (login/register)
+- Kanban board (create, move, delete tasks)
+- Persistent tasks (stored in database)
+- Responsive UI with TailwindCSS
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Prerequisites
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Node.js (v18 or later recommended)
+- npm (comes with Node)
+- PostgreSQL, MySQL, or SQLite (for Prisma DB; SQLite is easiest for local dev)
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+### 1. Clone the repository
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 2. Install backend dependencies
 
-### `npm run eject`
+```bash
+cd backend
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 3. Set up Prisma
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Edit `backend/prisma/schema.prisma` to match your database.
+- Create a `.env` file in `backend/` with your database URL:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```env
+DATABASE_URL="file:./dev.db"
+JWT_SECRET="your-secret-key"
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Run migrations and generate Prisma client:
 
-## Learn More
+```bash
+npx prisma migrate dev --name init
+npx prisma generate
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 4. Start the backend server
 
-### Code Splitting
+```bash
+npm start
+```
+or
+```bash
+node app.js
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The backend runs on `http://localhost:3001`
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 5. Install frontend dependencies
 
-### Making a Progressive Web App
+```bash
+npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 6. Set up TailwindCSS
 
-### Advanced Configuration
+If not already set up, run:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
 
-### Deployment
+- Add the following to the top of your `src/index.css` (or `src/App.css`):
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
 
-### `npm run build` fails to minify
+- Configure `tailwind.config.js`:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```js
+module.exports = {
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  theme: { extend: {} },
+  plugins: [],
+}
+```
+
+---
+
+### 7. Start the frontend
+
+```bash
+npm start
+```
+
+The frontend runs on `http://localhost:3000`
+
+---
+
+## Usage
+
+- Open [http://localhost:3000](http://localhost:3000)
+- Register a new user or login.
+- Create, move, and delete tasks on the Kanban board.
+
+---
+
+## Environment Variables
+
+**Backend (.env):**
+- `DATABASE_URL` — connection string for your database  
+- `JWT_SECRET` — secret for JWT authentication
+
+---
+
+## Troubleshooting
+
+- If you have DB errors, check your `.env` and database setup.
+- If CORS errors, make sure your backend allows requests from `localhost:3000`.
+
+---
+
+## License
+
+MIT
