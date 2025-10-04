@@ -59,6 +59,7 @@ npx prisma generate
 ### 4. Start the backend server
 
 ```bash
+cd backend
 npm start
 ```
 or
